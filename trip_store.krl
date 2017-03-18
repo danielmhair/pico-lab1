@@ -40,7 +40,7 @@ Ruleset for Part 3 of pico lab
 
     short_trips = function() {
         trips = ent:trips.defaultsTo(empty_trip, "short_trips function -- trips re-initialized");
-        only_short = trips.filter(function(trip_keys,v){
+        only_short = trips.filter(function(trip_keys,trip_values){
             trip_keys{["mileage"]} < long_trip
         });
 
