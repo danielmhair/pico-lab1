@@ -10,15 +10,16 @@ A first ruleset for Part 2 of pico lab
   }
   
   global {
-    __testing = { "queries": [ { "name": "__testing" } ],
-                  "events": [ { "domain": "echo", "type": "process_trip", "attrs": [ "mileage" ] } ]
-                }
+    __testing = {
+        "queries": [ { "name": "__testing" } ],
+        "events": [ { "domain": "echo", "type": "message", "attrs": [ "mileage" ] } ]
+    }
   }
   
   rule process_trip {
     select when echo message
     pre{
-      mileage = event:attr("mileage").defaultsTo(ent:mileage,"use stored name")
+      mileage = event:attr("mileage").klog("Mileage passed in: ")
     }
     send_directive("trip") with
       trip_length = mileage
