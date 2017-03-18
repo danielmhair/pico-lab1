@@ -21,7 +21,7 @@ A first ruleset for Part 2 of pico lab
   rule process_trip {
     select when car new_trip
     pre{
-      mileage = event:attr("mileage").klog("Mileage passed in: ")
+      mileage = event:attr("mileage").klog("FROM process_trip -- Mileage passed in: ")
       all_attrs = event:attrs()
     }
     send_directive("new_trip") with
@@ -35,7 +35,7 @@ A first ruleset for Part 2 of pico lab
   rule find_long_trips {
     select when explicit trip_processed
     pre {
-        mileage = event:attr("mileage").klog("Mileage passed in: ")
+        mileage = event:attr("mileage").klog("FROM find_long_trips -- Mileage passed in: ")
         all_attrs = event:attrs()
         is_long = mileage > long_trip
     }
