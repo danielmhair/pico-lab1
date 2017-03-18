@@ -12,7 +12,7 @@ A first ruleset for Part 2 of pico lab
   global {
     __testing = {
         "queries": [ { "name": "__testing" } ],
-        "events": [ { "domain": "echo", "type": "message", "attrs": [ "mileage" ] } ]
+        "events": [ { "domain": "car", "type": "new_trip", "attrs": [ "mileage" ] } ]
     }
 
     long_trip = "200".as("Number")
