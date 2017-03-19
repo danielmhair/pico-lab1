@@ -6,7 +6,8 @@ Ruleset for Part 3 of pico lab
 >>
     author "Daniel Hair"
     logging on
-    shares __testing
+    shares __testing, long_trip, trips, long_trips, short_trips
+    provides trips, long_trips, short_trips
   }
   
   global {
@@ -19,6 +20,8 @@ Ruleset for Part 3 of pico lab
         "mileage": "0".as("Number"),
         "timestamp" : timestamp 
     } }
+
+    long_trip = "200".as("Number")
 
     empty_long_trip = { "_0": {
         "mileage": "0".as("Number"),
@@ -39,10 +42,10 @@ Ruleset for Part 3 of pico lab
     }
 
     short_trips = function() {
-        trips = ent:trips.defaultsTo(empty_trip, "short_trips function -- trips re-initialized");
-        only_short = trips.filter(function(trip_keys,trip_values){
-            trip_keys{["mileage"]} < long_trip
-        });
+        trips = ent:trips.defaultsTo(empty_trip, "short_trips function -- trips re-initialized")
+        only_short = trips.filter(function(trip){
+            trip{["mileage"]} < long_trip
+        })
 
         only_short
     }
